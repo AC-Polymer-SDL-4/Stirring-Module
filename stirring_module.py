@@ -4,10 +4,10 @@ import time
 def initialize_fans(pin_num, frequency = 1000):
     """
     Initialize fan stirring, requires a short period of high PWM to turn on all fans and stir at lower speeds afterwards.
-    Arguments
+    Arguments:
     ---
     pin_num: the number of the GPIO pin the PCB & fans are connected to
-    frequency: the frequency (Hz) for PWM
+    frequency: the frequency (Hz) for PWM, how quickly the fan switches between power on/off.
     """
     fans_pin = Pin(pin_num, Pin.OUT) #GPIO pin for the fan is connected at pin 0
     fans_pwm = PWM(fans_pin) #initialize PWM at the pin
@@ -21,18 +21,19 @@ def initialize_fans(pin_num, frequency = 1000):
 def stir(fans_pwm, power, duration):
     """
     Stir using fans at given power(1-100) & duration (in MINUTES)
-    0-100 power: 50 ok 
+    0-100 power: minimum 50 to get all fans to spin
     
     Note: use start() before first stir function, however start() is not needed for changing stiring speed afterwards.
 
     Arguments:
+    ---
     power (int): 1-100 (50 required for slow stirring)
     duration (int): duration in MINUTES for stirring
     """
     if power > 0 and power <= 100:
         dutycycle = power/100*65535
         fans_pwm.duty_u16(int(dutycycle)) #set duty cycle (65535 = 100% power)
-        print("duty cycle:", int(dutycycle))
+        print("duty cycle:", int(dutycycle), "for", duration, "mins")
         time.sleep(int(duration*60)) #stir for duration
     else:
         print("invalid value for power") #do a try escape maybe?
@@ -43,9 +44,9 @@ def stop(fans_pwm): #to stop stirring
     time.sleep_ms(5) #wait for it to stop
 
 try:
-    fans = initialize_fans(0)
-    stir(fans,70,0.1) 
-    stop(fans)
+    fans = initialize_fans(0) #initialize fans at GPIO pin 0
+    stir(fans,80,0.1) #stir at 80% power for 0.1 minute
+    stop(fans) #stop stirring
 
     fans.deinit() #deinitialize the PWM pin
     print("Stirring Complete")
