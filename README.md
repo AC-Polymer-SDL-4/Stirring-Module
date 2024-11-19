@@ -116,7 +116,7 @@ Finally, insert the side panels into the side module and the lids to complete th
 4. **Flash the RPi** by downloading the [UF2 file for the RPi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html) and transferring the file into the RPi's directory. The file directory should disappear from your files explorer. Unplug and replug the RPi to your computer.
 5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example changing the stir speed and duration. 
 
-This simple program contains 3 methods for operating the fan, which will be explained below and are also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+x` on the keyboard. 
+This simple program contains 3 methods for operating the fan, which will be explained below and are also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+c` on the keyboard. 
 - `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans & PCB are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
 - `stir()`: commands the fans to stir at a given power (0-100), controlled through pwm signals, for a designated amount of time.
 - `stop()`: stops the fans
