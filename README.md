@@ -2,6 +2,7 @@
 # Overview
 Magnetic stirring is essential for chemistry experiments, to thoroughly mix components in a flask/vial, increasing the rate of reaction and allowing for the distribution of heat. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler, so it can be incorporated in automated workflows in self-driving labs (SDLs).
 
+
 ### Authors
 Monique Ngan, Lab Technician \
 Owen Alfred Melville, Staff Scientist\
@@ -14,6 +15,7 @@ Owen Alfred Melville, Staff Scientist\
 3. Assemble electronic components
 4. Run code to operate stirring module
 
+<!---
 ## Tools Required For this Project
 - [Soldering Iron (for electrical connections)](https://www.amazon.ca/Weller-Soldering-Station-WLACCBSH-02-Silicone/dp/B08MC4HVTR?th=1)
 - [Heat Gun (for heat-shrink electrical connections)](https://www.amazon.ca/Mini-Heat-Shrink-Gun-Dual-Temp-dp-B09TYM45BH/dp/B09TYM45BH/ref=dp_ob_title_hi)
@@ -106,11 +108,25 @@ The last step to setting up is connecting the GPIO wires into the Raspberry Pi. 
 ## 3d: Assemble Electronics Casing (Optional)
 Finally, insert the side panels into the side module and the lids to complete the assembly of the electronics.
 
-# Step 4: Operating the Stirring Module
-1. Download Visual Studio Code and Python.
+-->
+# Operating the Stirring Module
+1. Download Visual Studio Code (VS Code) and Python.
 2. Download the MicroPico Extension, which will be used to control the RPi.
 3. Plug in the USB-B end of the cable into the RPi and the USB A end into your computer, while pressing the BOOTSEL button on the RPi. This should open a file directory for the RPi on your computer.
-4. Flash the RPi by downloading the [UF2 file for the RPi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html) and transferring the file into the RPi's directory. The file directory should disappear from your files explorer. Unplug and replug in the RPi to your computer.
+4. **Flash the RPi** by downloading the [UF2 file for the RPi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html) and transferring the file into the RPi's directory. The file directory should disappear from your files explorer. Unplug and replug the RPi to your computer.
+5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example changing the stir speed and duration. 
+
+This simple program contains 3 methods for operating the fan, which will be explained below and are also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+x` on the keyboard. 
+- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans & PCB are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
+- `stir()`: commands the fans to stir at a given power (0-100), controlled through pwm signals, for a designated amount of time.
+- `stop()`: stops the fans
+- `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
+
+6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards.
+
+*Congratulations you are all set for using the stirring module!*
+
+
 
 
 
