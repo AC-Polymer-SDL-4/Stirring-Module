@@ -118,7 +118,7 @@ Finally, insert the side panels into the side module and the lids to complete th
 
 This simple program contains 3 methods for operating the fan, which will be explained below and are also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+c` on the keyboard. 
 - `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans & PCB are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
-- `stir()`: commands the fans to stir at a given power (0-100), controlled through pwm signals, for a designated amount of time.
+- `stir()`: commands the fans to stir at a given power (0-100) which are controlled through pwm signals, for a designated amount of time in _minutes_.
 - `stop()`: stops the fans
 - `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
 
