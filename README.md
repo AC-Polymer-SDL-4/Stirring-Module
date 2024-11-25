@@ -135,7 +135,7 @@ This simple program contains 3 methods for operating the fan, which are describe
 | Acetone | 45-75 | 60-75 (80 starts to bounce) |
 | Water  | 45-70 | 60-90 |
 | 0.1% PEG in water  | 45-80 | 50-80 |
-| 25% PEG in water  | 70-92 | 70-80 |
+| 25% PEG in water  | 70-92 (for all speeds - mainly vibrates and doesn't stir well) | 70-80 |
 | 50% PEG in water | Not possible | Not possible (70 moves very slowly, still only vibrating at 92) |
 
 ## Trouble Shooting Common Errors
