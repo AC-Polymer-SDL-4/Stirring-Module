@@ -30,13 +30,13 @@ def stir(fans_pwm, power, duration):
     power (int): 1-100 (50 required for slow stirring)
     duration (int): duration in MINUTES for stirring
     """
-    if power > 0 and power <= 100:
+    if power > 0 and power <= 100 and duration > 0:
         dutycycle = power/100*65535
         fans_pwm.duty_u16(int(dutycycle)) #set duty cycle (65535 = 100% power)
         print("duty cycle:", int(dutycycle), "for", duration, "mins")
-        time.sleep(int(duration*60)) #stir for duration
+        time.sleep(int(duration*60)) #stir for duration in minutes
     else:
-        print("invalid value for power") #do a try escape maybe?
+        print("invalid value for power (0-100) and/or duration(>0)")
         stop(fans_pwm)
 
 def stop(fans_pwm): #to stop stirring
@@ -45,7 +45,7 @@ def stop(fans_pwm): #to stop stirring
 
 try:
     fans = initialize_fans(0) #initialize fans at GPIO pin 0
-    stir(fans,80,0.1) #stir at 80% power for 0.1 minute
+    stir(fans,60,0.3) #stir at 60% power for 0.3 minute
     stop(fans) #stop stirring
 
     fans.deinit() #deinitialize the PWM pin
