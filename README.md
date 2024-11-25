@@ -2,7 +2,7 @@
 # Overview
 Magnetic stirring is essential for chemistry experiments, to thoroughly mix components in a flask/vial, increasing the rate of reaction and allowing for the distribution of heat. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler, so it can be incorporated in automated workflows in self-driving labs (SDLs).
 
-
+<!---
 ### Authors
 Monique Ngan, Lab Technician \
 Owen Alfred Melville, Staff Scientist\
@@ -15,7 +15,7 @@ Owen Alfred Melville, Staff Scientist\
 3. Assemble electronic components
 4. Run code to operate stirring module
 
-<!---
+
 ## Tools Required For this Project
 - [Soldering Iron (for electrical connections)](https://www.amazon.ca/Weller-Soldering-Station-WLACCBSH-02-Silicone/dp/B08MC4HVTR?th=1)
 - [Heat Gun (for heat-shrink electrical connections)](https://www.amazon.ca/Mini-Heat-Shrink-Gun-Dual-Temp-dp-B09TYM45BH/dp/B09TYM45BH/ref=dp_ob_title_hi)
@@ -111,13 +111,13 @@ Finally, insert the side panels into the side module and the lids to complete th
 -->
 # Operating the Stirring Module
 1. Download Visual Studio Code (VS Code) and Python.
-2. Download the MicroPico Extension, which will be used to control the RPi.
+2. Download the MicroPico Extension in VS Code, which will be used to communicate with the RPi.
 3. Plug in the USB-B end of the cable into the RPi and the USB A end into your computer, while pressing the BOOTSEL button on the RPi. This should open a file directory for the RPi on your computer.
 4. **Flash the RPi** by downloading the [UF2 file for the RPi Pico W](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html) and transferring the file into the RPi's directory. The file directory should disappear from your files explorer. Unplug and replug the RPi to your computer.
-5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example changing the stir speed and duration. 
+5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example for changing the stir speed and duration. 
 
-This simple program contains 3 methods for operating the fan, which will be explained below and are also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+c` on the keyboard. 
-- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans & PCB are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
+This simple program contains 3 methods for operating the fan, which are described below and also documented in comments within the script. These methods are called in a try-escape block where the program can be stopped by pressing `ctrl+c` on the keyboard. 
+- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
 - `stir()`: commands the fans to stir at a given power (0-100) which are controlled through pwm signals, for a designated amount of time in _minutes_.
 - `stop()`: stops the fans
 - `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
@@ -126,8 +126,30 @@ This simple program contains 3 methods for operating the fan, which will be expl
 
 *Congratulations you are all set for using the stirring module!*
 
+## Tested Power Values for Solutions of various viscosities.
+- Minimum power: **45** for all fans to turn on. Lower than that, only some fans will operate.
+- Maximum power: **92**. Higher than this, the fans turn too quickly and the whole module starts to shake.
+
+|  | Small Stir Bar | Larger Stir Bar (514) |
+| ---- | ----| ----|
+| Acetone | 45-75 | 60-75 (80 starts to bounce) |
+| Water  | 45-70 | 60-90 |
+| 0.1% PEG in water  | 45-80 | 50-80 |
+| 25% PEG in water  | 70-92 | 70-80 |
+| 50% PEG in water | Not possible | Not possible (70 moves very slowly, still only vibrating at 92) |
+
+## Trouble Shooting Common Errors
+**Error 1**: Trouble Connecting to RPi (when using the MicroPico Extension in VSCode)
+![Screenshot of Micropico Connection Error](https://github.com/user-attachments/assets/304d4ee8-6075-4c89-b44c-f000ccae95ec)
+or a `error running on raw repl` 
 
 
+=> Restart VSCode. If this does not help, restart your computer.
+
+Other potential solutions: uninstall / reinstall MicroPico extension & check if the RPi is connected (Windows > Device Manager, To see if RPi is connected via USB) 
+
+## Current Limitations & Future Improvements
+- Currently, the fans are spinning at slightly varying speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
 
 
 
