@@ -126,7 +126,7 @@ This simple program contains 3 methods for operating the fan, which are describe
 
 *Congratulations you are all set for using the stirring module!*
 
-## Tested Power Values for Solutions of various viscosities.
+## Tested Power Values for Solutions of Various Viscosities.
 - Minimum power: **45** for all fans to turn on. Lower than that, only some fans will operate.
 - Maximum power: **92**. Higher than this, the fans turn too quickly and the whole module starts to shake.
 
@@ -135,6 +135,7 @@ This simple program contains 3 methods for operating the fan, which are describe
 | Acetone | 45-75 | 60-75 (80 starts to bounce) |
 | Water  | 45-70 | 60-90 |
 | 0.1% PEG in water  | 45-80 | 50-80 |
+| 10% PEG in water  | 45-85 | 60-85 |
 | 25% PEG in water  | 70-92 (for all speeds - mainly vibrates and doesn't stir well) | 70-80 |
 | 50% PEG in water | Not possible | Not possible (70 moves very slowly, still only vibrating at 92) |
 
@@ -148,9 +149,8 @@ or a `error running on raw repl`
 
 Other potential solutions: uninstall / reinstall MicroPico extension & check if the RPi is connected (Windows > Device Manager, To see if RPi is connected via USB) 
 
-## Current Limitations & Future Improvements
+## Current Limitations & Future Work
 - Currently, the fans are spinning at slightly varying speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
-
 
 
 
