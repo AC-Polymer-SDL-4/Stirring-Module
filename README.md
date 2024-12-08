@@ -2,7 +2,7 @@
 # Overview
 Magnetic stirring is essential for chemistry experiments, to thoroughly mix components in a flask/vial, increasing the rate of reaction and allowing for the distribution of heat. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler, so it can be incorporated in automated workflows in self-driving labs (SDLs).
 
-<!---
+
 ### Authors
 Monique Ngan, Lab Technician \
 Owen Alfred Melville, Staff Scientist\
@@ -17,8 +17,8 @@ Owen Alfred Melville, Staff Scientist\
 
 
 ## Tools Required For this Project
-- [Soldering Iron (for electrical connections)](https://www.amazon.ca/Weller-Soldering-Station-WLACCBSH-02-Silicone/dp/B08MC4HVTR?th=1)
-- [Heat Gun (for heat-shrink electrical connections)](https://www.amazon.ca/Mini-Heat-Shrink-Gun-Dual-Temp-dp-B09TYM45BH/dp/B09TYM45BH/ref=dp_ob_title_hi)
+- [Soldering Iron](https://www.amazon.ca/Weller-Soldering-Station-WLACCBSH-02-Silicone/dp/B08MC4HVTR?th=1)
+- [Heat Gun](https://www.amazon.ca/Mini-Heat-Shrink-Gun-Dual-Temp-dp-B09TYM45BH/dp/B09TYM45BH/ref=dp_ob_title_hi)
 - [Wire cutters](https://www.amazon.ca/BOOSDEN-Crafting-Spring-Loaded-Plastics-Clippers/dp/B08ZCHYGN7/?th=1)
 - [3D printer](https://ca.store.bambulab.com/products/p1s?srsltid=AfmBOorLX7Ki2ZaYaFx6AWRBcr8wJq_0mTlmHkm-IWXz0sfFRXeNtMNX)
 
@@ -41,7 +41,7 @@ These are the materials required for the stirring module. Currently, the case ho
 | [**5V Diode INSERT LINK**]() | DigiKey | DH-20M50056 | 1 | 2.08 | 2.08 |
 
 ### Materials Required - Kits
-These materials come in kits, so you may not need them if you already have similar materials. They can be used for multiple reactors or other projects.
+These materials come in kits, so you may not need them if you already have similar materials. They can be used for other projects.
 | Item | Supplier | Cost (CAD) | Total Cost (CAD) |
 | ---- | ----| ----| ----|
 | [PCB Boards](https://www.amazon.ca/BOJACK-6-Prototype-Soldering-Compatible-Arduino/dp/B091PZQ4W7/) | Amazon Canada | 21.99 | 21.99 |
@@ -54,22 +54,30 @@ These materials come in kits, so you may not need them if you already have simil
 - Solder
 - Wires (at least Red & Black)
 - Filament for 3D Printing ([PLA](https://ca.store.bambulab.com/products/pla-basic-filament?gad_source=1&gclid=Cj0KCQjwpP63BhDYARIsAOQkATYc5jM-nciSOOw8pbxHA_WIkh3n5OJYfMMvQm4q8-BjsxyQY5-RIlQaAhdqEALw_wcB), [PETG](https://ca.store.bambulab.com/collections/petg/products/petg-hf))
-- Double sided tape / super glue
 
 ## Photo of Materials
 **INSERT PHOTO!**
 
 # Step 2: 3D Print the stirring module casing and electronics casing.
-In this repo, you can find `.stl` which are 3D printing files for the casing of the stirring module and the electronics case which holds and organizes the Raspberry Pi & PCB.
+In this repo, you can find `.stl` which are 3D printing files for the casing of the stirring module and the **_optional_** electronics case which holds and organizes the Raspberry Pi (RPi) & PCB.
+
+
 | File Name | Purpose | Filament | Printing Considerations |
 | ---- | ----| ----| ----|
 | Stirring Module Base.stl | Holds the fans used for stirring | PLA | Print with normal supports.|
 | Stirring Module Lid.stl | Holds the vials on top of fans | PLA | Print with the cylinders for the vials facing downwards, with normal supports.|
-**INSERT DETAILS FOR ELECTRONIC CASING!**
+|Electronics Casing/Pico Holder_MainBody v2.stl| Holds RPi Grove Shield & RPi | PETG| N/A |
+|Electronics Casing/Pico Holder_Main_Lid v4.stl| Lid for the Main Compoenent | PETG | N/A |
+|Electronics Casing/Pico Holder_Port_Door_Back.stl| Slides into back of PCB holding component | PETG| N/A |
+|Electronics Casing/Pico Holder_Port_Door_Stirring_Module v2.stl| Slides into front of PCB holding component | PETG| Orient with side saying "PORT" facing up |
+|Electronics Casing/Pico Holder_Port_Modular v11.stl| Holds PCB | PETG| N/A|
+|Electronics Casing/Pico_Aux_Lid_Snap.stl| Snaps onto top of PCB holding component | PETG| N/A|
+
+**DECIDE IF WANT TO UPLOAD f3d files.
 
 # Step 3: Assemble Components
 ## 3a: Assemble the PCB Board
-**Parts Required**
+### Parts Required
 - PCB board from Kit (60x40 mm)
 - Wires x4
 - 1x 1000 Ohm resistor
@@ -79,7 +87,10 @@ In this repo, you can find `.stl` which are 3D printing files for the casing of 
 - 1x Power Barrel Connector
 - 2x Shrink Heat Connector
 
-**Steps**
+### Circuit Diagram
+![stirring_module_circuit](https://github.com/user-attachments/assets/558af63d-14fb-4b61-bbb3-0f9af2840ce6)
+
+### Soldering Steps
 The following written instructions will give a description of the circuit diagram. If you are familiar with electronics, feel free to just solder the circuit diagram. 
 
 1. Mount the power connector in the top left corner of the PCB and solder in a 1000 Ohm resistor between the power and ground sides. This creates a power port, where the pin that is at the back of the barrel connector is your +5V pin, and the pin closer to the opening is the ground.
@@ -92,7 +103,7 @@ The following written instructions will give a description of the circuit diagra
    
 5. For the diode, orient it so the silver bar (which indiciates the cathode) points towards the +5V side of the current going into the fan. The diode is used to protect the circuit from the reverse flow of voltage after the fan is turned off, as rotational motors create a magnetic and thus energetic field which can flow in the opposite direction of the current, damaging the circuit. This way, it will flow back into the fan, using up the energy.
 
-6. For the wires that connect to the fan, solder in black and red wire (for the ground and + terminals respectively). We will use to connect these to the amalgamated fan wires in step 3c.
+6. For the wires that connect to the fan, solder in black and red wire (for the ground and + terminals respectively). We will use heat-shrink connectors to connect these to the amalgamated fan wires in step 3c.
 
 ## 3b: Connecting PCB to Fans
 1. Place the Fans into the slots in the base piece of the casing. Thread the wires through the hole at the bottom of the slot and collect the wires of the fans in the row at one end of the case.
@@ -108,7 +119,6 @@ The last step to setting up is connecting the GPIO wires into the Raspberry Pi. 
 ## 3d: Assemble Electronics Casing (Optional)
 Finally, insert the side panels into the side module and the lids to complete the assembly of the electronics.
 
--->
 # Operating the Stirring Module
 1. Download Visual Studio Code (VS Code) and Python.
 2. Download the MicroPico Extension in VS Code, which will be used to communicate with the RPi.
@@ -124,13 +134,13 @@ This simple program contains 3 methods for operating the fan, which are describe
 
 6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards.
 
-*Congratulations you are all set for using the stirring module!*
+*🎉🎉Congratulations you are all set for using the stirring module!*
 
 ## Tested Power Values for Solutions of Various Viscosities.
 - Minimum power: **45** for all fans to turn on. Lower than that, only some fans will operate.
 - Maximum power: **92**. Higher than this, the fans turn too quickly and the whole module starts to shake.
 
-|  | Small Stir Bar | Larger Stir Bar (514) |
+|  | Micro Stir Bar | Larger Stir Bar (514) |
 | ---- | ----| ----|
 | Acetone | 45-75 | 60-75 (80 starts to bounce) |
 | Water  | 45-70 | 60-90 |
