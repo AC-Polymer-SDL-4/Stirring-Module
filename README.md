@@ -12,8 +12,8 @@ Owen Alfred Melville, Staff Scientist\
 ## Summary of Steps
 1. Order the required parts 
 2. 3D Print the case
-3. Assemble electronic components
-4. Run code to operate stirring module
+3. Assemble the electronic components
+4. Run code to operate the stirring module
 
 
 ## Tools Required For this Project
@@ -59,8 +59,9 @@ These materials come in kits, so you may not need them if you already have simil
 **INSERT PHOTO!**
 
 # Step 2: 3D Print the stirring module casing and electronics casing.
-In this repo, you can find `.stl` which are 3D printing files for the casing of the stirring module and the **_optional_** electronics case which holds and organizes the Raspberry Pi (RPi) & PCB.
+In this repo, you can find `.stl` which are 3D printing files for the casing of the stirring module which is designed for Electrochemical Cell Vials (28mm diameter) and the **_optional_** electronics case which holds and organizes the Raspberry Pi (RPi) & PCB.
 
+`Stirring_Module.f3d` is an editable 3D Printing File containing both the lid and base, so it can be redesigned to fit your needs.
 
 | File Name | Purpose | Filament | Printing Considerations |
 | ---- | ----| ----| ----|
@@ -72,8 +73,6 @@ In this repo, you can find `.stl` which are 3D printing files for the casing of 
 |Electronics Casing/Pico Holder_Port_Door_Stirring_Module v2.stl| Slides into front of PCB holding component | PETG| Orient with side saying "PORT" facing up |
 |Electronics Casing/Pico Holder_Port_Modular v11.stl| Holds PCB | PETG| N/A|
 |Electronics Casing/Pico_Aux_Lid_Snap.stl| Snaps onto top of PCB holding component | PETG| N/A|
-
-**DECIDE IF WANT TO UPLOAD f3d files.
 
 # Step 3: Assemble Components
 ## 3a: Assemble the PCB Board
