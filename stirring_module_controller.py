@@ -11,7 +11,6 @@ def run_stirring_module(duration,power):
     try:
         # Run the mpremote command as a subprocess
         command = f"import stirring_module; stirring_module.initialize_and_stir({duration}, {power})" 
-        #command = f"import stirring_module; stirring_module.main()" 
         result = subprocess.run(
             ['mpremote', 'connect', 'COM11', 'exec', command], #may need to edit COM number for your computer
             stdout=subprocess.PIPE,  # Capture the output of the command
@@ -31,4 +30,4 @@ def run_stirring_module(duration,power):
         print(f"Error running mpremote: {e}")
 
 #run method
-run_stirring_module(duration=.2, power=50)
+run_stirring_module(duration=.2, power=50) #edit for experiments
