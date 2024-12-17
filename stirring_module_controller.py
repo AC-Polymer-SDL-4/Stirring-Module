@@ -1,16 +1,16 @@
 import subprocess
 
-def run_stirring_module(duration,power):
+def run_stirring_module(pin_num, power, duration):
     """
     Initializes fans and stirs. Currently set to GPIO pin 0 (in stirring_module.py)
     Parameters
     ---
+    power: 1-100, the stirring speed (minimum 45 for all fans to spin)
     duration: number of minutes to stir for
-    power: 1-100, the stirring speed (minimum 50 for all fans to spin)
     """
     try:
         # Run the mpremote command as a subprocess
-        command = f"import stirring_module; stirring_module.initialize_and_stir({duration}, {power})" 
+        command = f"import stirring_module; stirring_module.initialize_and_stir({pin_num},{power},{duration})" 
         result = subprocess.run(
             ['mpremote', 'connect', 'COM11', 'exec', command], #may need to edit COM number for your computer
             stdout=subprocess.PIPE,  # Capture the output of the command
@@ -29,5 +29,5 @@ def run_stirring_module(duration,power):
     except Exception as e:
         print(f"Error running mpremote: {e}")
 
-#run method
-run_stirring_module(duration=.2, power=50) #edit for experiments
+#running the method
+run_stirring_module(pin_num = 0, power=60, duration=.15) #edit values as desired
