@@ -114,8 +114,8 @@ The following written instructions will give a description of the circuit diagra
 ## 3c: Assemble PCB & Raspberry Pi
 The last step to setting up is connecting the GPIO wires to the Raspberry Pi. The electronic casing (optional) can be printed and used to organize the wires in the project. Slide the side module in with the central square unit.
 1. Place the Raspberry Pi on the Rasperry Pi Grove Shield. Optionally, place the grove shield and PCB into the square unit and side unit of the electronic casing.
-2. Connect the RPi GPIO Pin 0 to the "GP0" slot on the RPi Grove shield. If using the electronic casing, thread the wire through one of the honeycombs in the side panel.
-3. Connect the RPi Ground Pin to any slot that says "GND" on the RPi Grove shield.
+2. Connect the RPi GPIO Pin 0 wire to the "GP0" slot on the RPi Grove shield. If using the electronic casing, thread the wire through one of the honeycombs in the side panel.
+3. Connect the RPi Ground Pin wire to any slot that says "GND" on the RPi Grove shield.
 
 #### Image of Soldered Circuit + RPi
 <img src="https://github.com/user-attachments/assets/ffd1aeaa-bdd7-4fed-9f0c-01aae3cf2324" width = "500" height = "286">
