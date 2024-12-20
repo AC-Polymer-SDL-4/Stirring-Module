@@ -1,7 +1,8 @@
 # Magnetic Stirring Module
-# Overview
-Magnetic stirring is a commonly used method in chemistry experiments. Through a magnetic field in the stirrer, a stir bar spins quickly to mix components in a flask/vial, creating a uniform mixture and increasing the rate of reactions. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler deck slots, so it can be incorporated in automated workflows in self-driving labs (SDLs).
+<img src="https://github.com/user-attachments/assets/e5639acb-62e8-47d8-9ab2-9b2b649f063d" width = "300" height = "300">
 
+# Overview
+Magnetic stirring is a commonly used method for mixing reagents in chemistry experiments. Through a magnetic field in the stirrer, a stir bar spins quickly to mix components in a flask/vial, creating a uniform mixture and increasing the rate of reactions. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler deck slots, so it can be incorporated into automated workflows in self-driving labs (SDLs). 
 
 ### Authors
 Monique Ngan, Lab Technician \
@@ -16,7 +17,7 @@ Owen Alfred Melville, Staff Scientist\
 4. Run code to operate the stirring module
 
 
-## Tools Required For this Project
+## Tools Required for this Project
 - [Soldering Iron](https://www.amazon.ca/Weller-Soldering-Station-WLACCBSH-02-Silicone/dp/B08MC4HVTR?th=1)
 - [Heat Gun](https://www.amazon.ca/Mini-Heat-Shrink-Gun-Dual-Temp-dp-B09TYM45BH/dp/B09TYM45BH/ref=dp_ob_title_hi)
 - [Wire cutters](https://www.amazon.ca/BOOSDEN-Crafting-Spring-Loaded-Plastics-Clippers/dp/B08ZCHYGN7/?th=1)
@@ -27,7 +28,7 @@ Owen Alfred Melville, Staff Scientist\
 - Basic Python Coding
 
 # Step 1: Order Required Parts
-These are the materials required for the current design of the stirring module which holds 6 vials. Please note prices may vary over time.
+These are the materials required for the current design of the stirring module which holds 6 vials. Note prices may vary over time.
 
 | Item | Supplier | Part Number | Number | Cost (CAD) | Total Cost (CAD) |
 | ---- | ----| ----| ----| ----| ----|
@@ -38,7 +39,8 @@ These are the materials required for the current design of the stirring module w
 | [5V Barrel Power Supply](https://www.digikey.ca/en/products/detail/tri-mag-llc/L6R06H-050/7682614) | DigiKey | 364-1251-ND | 1 | 10.15 | 10.15 |
 | [NPN Transistor](https://www.digikey.ca/en/products/detail/nexperia-usa-inc/PZT2222A-115/1158011?s=N4IgTCBcDaIIwHYwILQBYwFYwrigBAHIAiIAugL5A) | DigiKey | 1727-4252-1-ND | 1 | 0.80 | 0.80 |
 | [USB A to Micro B Cable](https://www.digikey.com/en/products/detail/cvilux-usa/DH-20M50056/13177301) | DigiKey | DH-20M50056 | 1 | 3.33 | 3.33 |
-| [**5V Diode INSERT LINK**]() | DigiKey | DH-20M50056 | 1 | 2.08 | 2.08 |
+| [50 V Diode](https://www.digikey.ca/en/products/detail/diotec-semiconductor/1N4001/13164614) | DigiKey |	4878-1N4001CT-ND | 1 | 0.15 | 0.15 |
+| Total Cost (CAD)| |  |  | | **119.95** |
 
 ### Materials Required - Kits
 These materials come in kits, so you may not need them if you already have similar materials. They can be used for other projects as well.
@@ -48,6 +50,7 @@ These materials come in kits, so you may not need them if you already have simil
 | [Metal Magnets](https://www.amazon.ca/Magnets-Refrigertor-Whiteboard-Durable-Multi-Use/dp/B07BJFD6FL/?th=1) | Amazon Canada | 9.99 | 9.99 |
 | [Resistors](https://www.amazon.ca/Resistor-Assorted-Resistors-Assortment-Experiments/dp/B07L851T3V/?th=1) | Amazon Canada | 16.99 | 16.99 |
 | [Solder Seal Connectors](https://www.amazon.ca/Kuject-Connectors-Waterproof-Electrical-Automotive/dp/B073RMRCC3/?th=1) | Amazon Canada | 17.99 | 17.99 |
+| Total Cost (CAD) |  |  | **66.96** |
 
 
 ### Generic Materials Required
@@ -61,7 +64,7 @@ These materials come in kits, so you may not need them if you already have simil
 # Step 2: 3D Print the stirring module casing and electronics casing.
 In this repo, you can find `.stl` which are 3D printing files for the casing of the stirring module (designed for electrochemical cell vials with a 28mm diameter) and the _optional_ electronics case which holds and organizes the Raspberry Pi (RPi) & PCB.
 
-`Stirring_Module.f3d` is an editable 3D Printing File containing both the lid and base, so it can be redesigned to fit your needs.
+`Stirring_Module.f3d` is an editable 3D Printing File containing both the lid and base, so the module can be redesigned to fit your needs.
 
 | File Name | Purpose | Filament | Printing Considerations |
 | ---- | ----| ----| ----|
@@ -71,8 +74,8 @@ In this repo, you can find `.stl` which are 3D printing files for the casing of 
 |Electronics Casing/Pico Holder_Main_Lid v4.stl| Lid for the Main Component | PETG | N/A |
 |Electronics Casing/Pico Holder_Port_Door_Back.stl| Slides into the back of the PCB holding component | PETG| N/A |
 |Electronics Casing/Pico Holder_Port_Door_Stirring_Module v2.stl| Slides into the front of the PCB holding component | PETG| Orient with side saying "PORT" facing up |
-|Electronics Casing/Pico Holder_Port_Modular v11.stl| Hold the PCB | PETG| N/A|
-|Electronics Casing/Pico_Aux_Lid_Snap.stl| Snaps onto the top of PCB holding component | PETG| N/A|
+|Electronics Casing/Pico Holder_Port_Modular v11.stl| Holds the PCB | PETG| N/A|
+|Electronics Casing/Pico_Aux_Lid_Snap.stl| Snaps into the top of PCB holding component | PETG| N/A|
 
 # Step 3: Assemble Components
 ## 3a: Assemble the PCB Board
@@ -83,37 +86,40 @@ In this repo, you can find `.stl` which are 3D printing files for the casing of 
 - 1x 5.6 Ohm resistor
 - 1x 390 Ohm resistor
 - 1x NPN Transistor
-- 1x 5V diode
+- 1x 50V diode
 - 1x Power Barrel Connector
 - 2x Heat Shrink Connector
 
 ### Circuit Diagram
-![stirring_module_circuit](https://github.com/user-attachments/assets/ab85338e-2480-4929-9b23-1145f1889081)
-(an image of the soldered PCB is attached below)
+![stirring_module_circuit](https://github.com/user-attachments/assets/ab85338e-2480-4929-9b23-1145f1889081)\
+_(an image of the soldered PCB is attached below)_
 
 ### Soldering Steps
-The following written instructions will give a description of the circuit diagram. If you are familiar with electronics, feel free to just solder the circuit diagram. 
+The following instructions will give a written description of the circuit diagram. If you are familiar with electronics, feel free to just solder the circuit diagram. 
 
-1. Mount the power connector in the top left corner of the PCB and solder in a 1000 Ohm resistor between the power and ground sides. This creates a power port, where the pin that is at the back of the barrel connector is your +5V pin, and the pin closer to the opening is the ground.
+1. Mount the barrel connector in the top left corner of the PCB and solder in a 1000 Ohm resistor between the power and ground sides. This creates a power port, where the pin at the back of the barrel connector is your +5V pin, and the pin closer to the opening is the ground (see below).
+<img src="https://github.com/user-attachments/assets/54123e2e-5e5e-465c-873b-4c60afbe5cbc" width = "250" height = "200">
    
-2. The GPIO ground pin wire can be a bare wire or a wire with an open pin. Solder in one end of the wire into the PCB in series between the ground of the barrel connector and the resistor (See diagram). This wire will be connected to the RPi Grove Shield in a later step.
+2. The RPi ground pin wire can be a bare wire or a wire with an open pin. Solder in one end of the wire in series between the ground of the barrel connector and the 1K Ohm resistor (See diagram). The other end will be connected to the RPi Grove Shield in a later step.
 
-3. For the NPN transistor, the drawing below shows the schematic (with the trapezoidal part that sticks out facing forward). Pin 1 (base) goes to the 390 Ohm resistor that eventually goes to the RPi GPIO pin.  Pin 2 (collector) goes to the fans and power supply. Pin 3 (emitter) goes to ground. 
+3. For the NPN transistor, the drawing below shows the schematic (with the trapezoidal piece that protrudes facing towards you). Pin 1 (base) goes to the 390 Ohm resistor and RPi GPIO pin.  Pin 2 (collector) goes to the ground terminal of the fans and Pin 3 (emitter) goes to the ground of the power supply.\
+![transistor numbering](https://github.com/user-attachments/assets/b119d60f-0305-4107-8f57-50d115634337)
 
-4. Similar to the GPIO ground pin, one end of the short wire (bare or with open pin) is soldered in series with the 330 Ohm resistor and the emitter pin from the transistor.
+4. At pin 1, solder a 390 Ohm resistor and one end of the GPIO pin wire (bare or with open pin), like the ground pin wire.
    
-5. For the diode, orient it so the silver bar (which indiciates the cathode) points towards the +5V side of the current going into the fan. The diode is used to protect the circuit from the reverse flow of voltage after the fan is turned off, as rotational motors create a magnetic and energetic field which can flow in the opposite direction of the current, damaging the circuit. This way, it will flow back into the fan, using up the energy.
+6. At pin 2, solder in one end of a black wire. This will be connected to the ground wires of the fan. Repeat the same for a red wire that is connected to a 5.6 Ohm resistor (see diagram).
+   
+8. Both the fan wires will be connected to a diode. Orient the diode so the silver bar (which indiciates the cathode) points towards the +5V terminal of the fan (the red wire). The diode is used to protect the circuit from the reverse flow of voltage after the fan is turned off, as rotational motors create a magnetic and energetic field which can flow in the opposite direction of the current, damaging the circuit. This way, it will flow back into the fan, using up the energy.
 
-6. For the wires that connect to the fan, solder in black and red wire, for the ground and + terminals respectively. We connect these to the fan wires in the next step.
 
 ## 3b: Connecting PCB to Fans
-1. Place the fans into the slots in the base piece of the casing. Thread the wires through the hole at the bottom of the slot and collect the wires of the fans in the row at one end of the case.
-2. Combine all the black wires (ground) together by twisting the exposed wires together securely. You should have the same number of black wires and the number of fans. Repeat this step for all the red wires.
-3. Use a heat shrink connector to solder together the combined black wires with the "Black Fans" wire from the PCB. Repeat for the red wire and the "Red Fans" wire.
+1. Place the fans into the square slots in the base piece of the casing. Thread the wires through the hole at the bottom of each slot and collect the wires of the fans in the row at one end of the case.
+2. Combine all the black wires (ground) together by twisting the exposed wires together securely. You should have the same number of black wires combined as the number of fans used. Repeat this step for the red wires.
+3. Use a heat shrink connector to solder together the combined black wires with the "Fans (Black)(-)" wire from the PCB. Repeat for the red wire and the "Fans (Red)(+)" wire.
 
 ## 3c: Assemble PCB & Raspberry Pi
 The last step to setting up is connecting the GPIO wires to the Raspberry Pi. The electronic casing (optional) can be printed and used to organize the wires in the project. Slide the side module in with the central square unit.
-1. Place the Raspberry Pi on the Rasperry Pi Grove Shield. Optionally, place the grove shield and PCB into the square unit and side unit of the electronic casing.
+1. Attach the Raspberry Pi to the Grove Shield. Optionally, place the grove shield and PCB into the square unit and slide on the side unit of the electronic casing.
 2. Connect the RPi GPIO Pin 0 wire to the "GP0" slot on the RPi Grove shield. If using the electronic casing, thread the wire through one of the honeycombs in the side panel.
 3. Connect the RPi Ground Pin wire to any slot that says "GND" on the RPi Grove shield.
 
@@ -131,16 +137,16 @@ Finally, insert the side panels into the side module and put on the lids to comp
 5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example for changing the stir speed and duration. 
 
 This program contains methods for operating the fan, which are described below and also documented in comments within the script. These methods are called in a try-escape block (to be uncommented out in the code) where the program can be stopped by pressing `ctrl+c` on the keyboard. 
-- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
-- `stir()`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
-- `stop()`: stops the fans
+- `initialize_fans(pin_num, frequency)`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
+- `stir(fans, power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
+- `stop(fans)`: stops the fans
 - `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
 - `initialize_and_stir()`: contains all of the above functions in order, for easier operation
 
 6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards. Be sure to **uncomment** the try-escape block to run the methods described.
 
 7. Optionally, the module can be run without using the MicroPico REPL terminal, using the Python subpackage module. Download and run `stirring_module_controller.py`, where `run_stirring_module()` will call `initialize_and_stir()` with the given parameters.
-      -  Note that `stirring_module.py` needs to be uploaded to the RPi and the Pico needs to be disconnected. As well, the **COM number** needs to be edited.
+      -  Note that `stirring_module.py` needs to be uploaded to the RPi and the Pico needs to be disconnected in the MicroPico terminal. As well, the **COM number** (in line 15 of stirring_module_controller.py) needs to be changed to the COM number your module is connected to. You can check this through Windows > Device manager > Ports.
 
 *🎉🎉Congratulations you are all set for using the stirring module!*
 
@@ -168,7 +174,7 @@ Other potential solutions: uninstall / reinstall MicroPico extension & check if 
 Ensure the RPi is disconnected in the MicroPico REPL terminal, as both can not be connected at the same time.
 
 ## Current Limitations & Future Work
-- Currently, the inidividual fans are spinning at slightly different speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
+- Currently, the individual fans are spinning at slightly different speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
 
 
 
