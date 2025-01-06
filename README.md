@@ -175,6 +175,7 @@ Ensure the RPi is disconnected in the MicroPico REPL terminal, as both can not b
 
 ## Current Limitations & Future Work
 - Currently, the individual fans are spinning at slightly different speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
+- Orchestration with the Opentrons / other liquid dispensers
 
 
 
