@@ -137,8 +137,8 @@ Finally, insert the side panels into the side module and put on the lids to comp
 5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example for changing the stir speed and duration. 
 
 This program contains methods for operating the fan, which are described below and also documented in comments within the script. These methods are called in a try-escape block (to be uncommented out in the code) where the program can be stopped by pressing `ctrl+c` on the keyboard. 
-- `initialize_fans(pin_num, frequency)`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
-- `stir(fans, power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
+- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
+- `stir_for_duration(fans, power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
 - `stop(fans)`: stops the fans
 - `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
 - `initialize_and_stir()`: contains all of the above functions in order, for easier operation
@@ -172,6 +172,12 @@ Other potential solutions: uninstall / reinstall MicroPico extension & check if 
 
 **Error 2**: COM in use (when using subprocess to operate RPi) \
 Ensure the RPi is disconnected in the MicroPico REPL terminal, as both can not be connected at the same time.
+
+**Error 3**: mpremote module not found \
+Try installing and reinstalling the mpremote package using pip install.
+
+**Error 4**: on-board LED not turning on \
+Back up all files on the RPi and disconnect from your computer. NOTE: Bootsel mode will remove all files on the microcontroller. Put the RPi in bootsel mode (by pressing the bootsel button) and reconnect it to your computer while the button is pressed. Reinstall the RPi [firmware](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html).
 
 ## Current Limitations & Future Work
 - Currently, the individual fans are spinning at slightly different speeds which is important to note for lower stir speeds as some fans may stop stirring as it does not have enough power. Future prototypes should work on improving electrical connections to the fans, as this is the suspected reason for this issue.
