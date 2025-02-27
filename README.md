@@ -150,7 +150,7 @@ This program contains methods for operating the fan, which are described below a
 
 6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards. Be sure to **uncomment** the try-escape block to run the methods described.
 
-7. Optionally, the module can be run without using the MicroPico REPL terminal, using the Python subpackage module. Download and run `stirring_module_controller.py`, where `run_stirring_module()` will call `initialize_and_stir()` with the given parameters.
+7. Optionally, the module can be run without using the MicroPico REPL terminal, using the Python subpackage module. Download and run `stirring_module_controller.py`, where the fans can be commanded to start stirring (`start_stirring(power)`), stop stirring (`stop_stirring()`) and stir for a specified duratino (`stir_for_duration(power,duration)`).
       -  Note that `stirring_module.py` needs to be uploaded to the RPi and the Pico needs to be disconnected in the MicroPico terminal. As well, the **COM number** (in line 15 of stirring_module_controller.py) needs to be changed to the COM number your module is connected to. You can check this through Windows > Device manager > Ports.
 
 *🎉🎉Congratulations you are all set for using the stirring module!*
