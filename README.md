@@ -137,11 +137,16 @@ Finally, insert the side panels into the side module and put on the lids to comp
 5. Download `stirring_module.py` and open it in VS Code. Feel free to edit this script to accomodate for different uses, for example for changing the stir speed and duration. 
 
 This program contains methods for operating the fan, which are described below and also documented in comments within the script. These methods are called in a try-escape block (to be uncommented out in the code) where the program can be stopped by pressing `ctrl+c` on the keyboard. 
-- `initialize_fans()`: This function is for initializing pulse width modulation (PWM) at the given GPIO pin where the fans are connected to. Be sure to save the returned object as it will be required for calling the subsequent functions.
-- `stir_for_duration(fans, power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
-- `stop(fans)`: stops the fans
+- `initialize_fans()`: This function initializes fans in preparation for stirring.
+- `stir_for_duration(power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
+- `stir(power)`: commands the fans to stir at the given power until the stop() command is run
+- `stop()`: stops the fans
 - `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
-- `initialize_and_stir()`: contains all of the above functions in order, for easier operation
+- `initialize_and_stir(power, duration)`: initializes and stirs for the specified duration of time
+- `controller_stir(power)`: to be used in a controller class to command the fans to stir at a certain power
+- `controller_stop()`: to be used in a controller class to stop stirring
+
+- The on-board LED is also turned on while stirring is on, and turned off when stirring is stopped.
 
 6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards. Be sure to **uncomment** the try-escape block to run the methods described.
 
