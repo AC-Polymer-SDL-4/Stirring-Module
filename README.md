@@ -140,8 +140,7 @@ This program contains methods for operating the fan, which are described below a
 - `initialize_fans()`: This function initializes fans in preparation for stirring.
 - `stir_for_duration(power, duration)`: commands the fans to stir at a given power (1-100) which is controlled through pwm signals, for a designated amount of time in _minutes_.
 - `stir(power)`: commands the fans to stir at the given power until the stop() command is run
-- `stop()`: stops the fans
-- `fans.deinit()`: deinitializes the signal for the pin. It is to be used at the very end of the program.
+- `stop()`: stops and deinitializes the fans
 - `initialize_and_stir(power, duration)`: initializes and stirs for the specified duration of time
 - `controller_stir(power)`: to be used in a controller class to command the fans to stir at a certain power
 - `controller_stop()`: to be used in a controller class to stop stirring
@@ -150,7 +149,7 @@ This program contains methods for operating the fan, which are described below a
 
 6. To run the file, right click in the editor and select **"Upload file to Pico"** and **"Run File on Pico"** afterwards. Be sure to **uncomment** the try-escape block to run the methods described.
 
-7. Optionally, the module can be run without using the MicroPico REPL terminal, using the Python subpackage module. Download and run `stirring_module_controller.py`, where the fans can be commanded to start stirring (`start_stirring(power)`), stop stirring (`stop_stirring()`) and stir for a specified duratino (`stir_for_duration(power,duration)`).
+7. Optionally, the module can be run without using the MicroPico REPL terminal, using the Python subpackage module. Download and run `stirring_module_controller.py`, where the fans can be commanded to start stirring (`start_stirring(power)`), stop stirring (`stop_stirring()`) and stir for a specified duration (`stir_for_duration(power,duration)`).
       -  Note that `stirring_module.py` needs to be uploaded to the RPi and the Pico needs to be disconnected in the MicroPico terminal. As well, the **COM number** (in line 15 of stirring_module_controller.py) needs to be changed to the COM number your module is connected to. You can check this through Windows > Device manager > Ports.
 
 *🎉🎉Congratulations you are all set for using the stirring module!*
