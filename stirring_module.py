@@ -5,7 +5,7 @@ class StirringModule:
     PIN_NUM = 0 #GPIO pin number the fans are connected to
     fans_pwm = ""
     initialized = False #tracks if fans have been "initialized" (need to stir at high power for 60ms to turn all fans on before stirring)
-
+    led = None
 
     def __init__(self, frequency = 1000) -> None:
         """
@@ -20,7 +20,10 @@ class StirringModule:
             self.fans_pin = Pin(self.PIN_NUM, Pin.OUT)
             self.fans_pwm = PWM(self.fans_pin) #initialize PWM at the pin
 
-            self.fans_pwm.freq(frequency) #set frequency 
+            self.fans_pwm.freq(frequency) #set frequency
+            
+            self.led = Pin("LED", Pin.OUT) #on-board led light
+            
             print("Stirring Module initializated")
         
         except Exception as e:
@@ -47,8 +50,7 @@ class StirringModule:
         if self.initialized == False:
             self.initialize_fans()
             
-        #led = Pin(25, Pin.OUT)
-        #led.value(1) #turn on light 
+        self.led.value(1) #turn on light 
 
         if power > 0 and power <= 100 and duration > 0:
             dutycycle = power/100*65535
@@ -73,8 +75,7 @@ class StirringModule:
         if self.initialized == False:
             self.initialize_fans()
         
-        #led = Pin(25, Pin.OUT)
-        #led.value(1) #turn on light 
+        self.led.value(1) #turn on light 
         
         if power > 0 and power <= 100:
             dutycycle = power/100*65535
@@ -91,8 +92,7 @@ class StirringModule:
         Stops fans from stirring & deinitializes pin from signal
         """
         
-        #led = Pin(25, Pin.OUT)
-        #led.value(0) #turn off light
+        self.led.value(0) #turn off light
         
         self.fans_pwm.duty_u16(0) #duty cycle = 0
         time.sleep_ms(5) #wait for it to stop
@@ -123,10 +123,8 @@ def controller_stir(power):
 def controller_stop():
     s = StirringModule()
     s.stop()
-
-#import machine
-#led = machine.Pin("LED", machine.Pin.OUT)
-#led.value(True)
+    
+#controller_stir(60)
 #time.sleep(5)
-#led.value(False)
-#print("LED should be on")
+#controller_stop()
+
