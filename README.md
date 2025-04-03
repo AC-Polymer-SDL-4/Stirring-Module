@@ -1,5 +1,9 @@
 # Magnetic Stirring Module
-<img src="https://github.com/user-attachments/assets/e5639acb-62e8-47d8-9ab2-9b2b649f063d" width = "300" height = "300">
+<img src="https://github.com/user-attachments/assets/e5639acb-62e8-47d8-9ab2-9b2b649f063d" width = "300" height = "300"> 
+
+https://github.com/user-attachments/assets/13f20be7-cdd6-449a-9a6a-96b7d4ccc78b
+
+
 
 # Overview
 Magnetic stirring is a commonly used method for mixing reagents in chemistry experiments. Through a magnetic field in the stirrer, a stir bar spins quickly to mix components in a flask/vial, creating a uniform mixture and increasing the rate of reactions. This repository contains instructions / materials / code for creating a low-cost stirring module which is programmable and compatible with the Opentrons liquid handler deck slots, so it can be incorporated into automated workflows in self-driving labs (SDLs). 
